@@ -4,8 +4,8 @@ top_frame.grid(row = 0, column = 0)
 
 top_but_frame.grid(row = 0, column = 0)
 but_ans.grid(row = 0, column = 0)
-but_C.grid(row = 0, column = 1)
-but_CE.grid(row = 0, column = 2)
+but_AC.grid(row = 0, column = 1)
+but_C.grid(row = 0, column = 2)
 but_DEL.grid(row = 0, column = 3)
 
 com_frame.grid(row = 1, column = 0)

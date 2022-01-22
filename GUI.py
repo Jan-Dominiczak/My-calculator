@@ -3,7 +3,6 @@ from tkinter import *
 
 root = Tk()
 root.title("Calculator")
-root.iconbitmap('D:\Jan\Programowanie\Python\projekty-github\Calculator\calc-icon.ico')
 
 temp_text = StringVar()
 temp_text.set('')
@@ -17,11 +16,15 @@ result = 0
 
 def get_next_var(text):
     temp_val = ''
+    sign = ''
     for i in range(1,len(text)+1):
-        if text[-i] == '+' or text[-i] == '*' or text[-i] == '-' or text[-i] == '/':
+        if text[-i] == '+' or text[-i] == '*' or text[-i] == '/':
+            break
+        elif text[-i] == '-':
+            sign = '-'
             break
         else: 
-            temp_val = temp_val + text[-i]
+            temp_val = temp_val + text[-i] + sign
     if temp_val == '':
         temp_val = 0
         return temp_val
@@ -44,6 +47,9 @@ def divide(x,y):
         return x/y
 
 def calculating(factors, actions):
+    temp = temp_text.get()
+    if temp[0] == '-':
+        factors[0] = factors[0]*(-1)
     res = factors[0]
     if actions.count('*'):
         while(actions.count('*')):
@@ -87,12 +93,12 @@ def click_ans():
     temp = temp_text.get() + str(temp_result.get())
     temp_text.set(temp)
 
-def click_C():
+def click_AC():
     temp_text.set('')
     temp_result.set(0)
     temp_ans.set('')
 
-def click_CE():
+def click_C():
     temp_text.set('')
 
 def click_DEL():
@@ -147,8 +153,8 @@ top_frame = Frame(root)
 
 top_but_frame = Frame(top_frame)
 but_ans = Button(top_but_frame, text = 'ANS', width = 6, height = 1, command=click_ans)
-but_C = Button(top_but_frame, text = 'C', width = 7, height = 1, command=click_C)
-but_CE = Button(top_but_frame, text = 'CE', width = 6, height = 1, command=click_CE)
+but_AC = Button(top_but_frame, text = 'AC', width = 7, height = 1, command=click_AC)
+but_C = Button(top_but_frame, text = 'C', width = 6, height = 1, command=click_C)
 but_DEL = Button(top_but_frame, text = 'DEL', width = 6, height = 1, command=click_DEL)
 
 com_frame = Frame(root)
