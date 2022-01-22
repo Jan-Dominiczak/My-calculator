@@ -3,6 +3,7 @@ from tkinter import *
 
 root = Tk()
 root.title("Calculator")
+root.resizable(0, 0)
 
 temp_text = StringVar()
 temp_text.set('')
@@ -63,7 +64,7 @@ def calculating(factors, actions):
     if actions.count('/'):
         while(actions.count('/')):
             x = actions.index('/')
-            res = round(divide(factors[x], factors[x+1]), 5)
+            res = divide(factors[x], factors[x+1])
             if res == 'error':
                 return res
             factors.pop(x)
@@ -110,7 +111,7 @@ def click_equal():
     temp = get_next_var(temp_text.get())
     factors.append(float(temp))
     actions.append('equal')
-    result = calculating(factors, actions)
+    result = round(calculating(factors, actions), 5)
     clear_ops()
     if result == 'error':
         return temp_ans.set(result)
